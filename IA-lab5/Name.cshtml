@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+            @{ string name = string.IsNullOrEmpty(Request["name"]) ? "Robert Paulson" : Request["name"];}
+    </head>
+    <body>
+        <ul>
+            @{
+                for (int i = 0; i < 10; i++)
+                {
+                    <li> His Name is @name</li>
+                }
+            }
+        </ul>
+    </body>
+</html>
