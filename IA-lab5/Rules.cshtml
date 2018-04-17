@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    @{  if (Session["rules"] == null)
+        {
+            Session.Add("rules", new List<string>());
+        }
+    }
+</head>
+    <body>
+        <form method="post" >
+            <input type="text" name="rule_input"/>
+            <input type="submit" value="Dodaj regułę" onclick="@{
+                    if (!string.IsNullOrEmpty(Request.Form["rule_input"])) {
+                        (Session["rules"] as List<string>).Add(Request.Form["rule_input"]);
+                        Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+                    }
+                }"/>
+        </form>
+
+        <ol>
+            @{ 
+                foreach(string rule in (Session["rules"] as List<String>))
+                {
+                    <li>@rule</li>
+                }
+            }
+        </ol>
+
+    </body>
+</html>
